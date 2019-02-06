@@ -27,7 +27,8 @@ class ProjectsTest extends TestCase
         $this->get('/projects')->assertSee($attributes['title']);
     }
 
-    public function test_a_user_sees_message_if_no_projects()
+    /** @test */
+    public function a_user_sees_message_if_no_projects()
     {
         $this->withoutExceptionHandling();
 
@@ -63,6 +64,13 @@ class ProjectsTest extends TestCase
     public function a_project_requires_a_description()
     {
         $attributes = factory('App\Project')->raw(['description' => '']);
+        $this->post('/projects', $attributes)->assertSessionHasErrors('description');
+    }
+
+    /** @test */
+    public function a_project_description_must_be_longer_than_five_character()
+    {
+        $attributes = factory('App\Project')->raw(['description' => 'some']);
         $this->post('/projects', $attributes)->assertSessionHasErrors('description');
     }
 }

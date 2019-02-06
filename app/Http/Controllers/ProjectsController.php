@@ -22,7 +22,7 @@ class ProjectsController extends Controller
     {
         Project::create($this->validate(request(), [
             'title' => 'required|min:3',
-            'description' => 'required'
+            'description' => 'required|min:5'
         ]));
         return redirect('/projects');
     }
