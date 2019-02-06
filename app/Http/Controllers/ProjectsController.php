@@ -13,6 +13,11 @@ class ProjectsController extends Controller
         return view('projects.index')->withProjects($projects);
     }
 
+    public function show(Project $project)
+    {
+        return view('projects.show')->withProject($project);
+    }
+
     public function store()
     {
         Project::create($this->validate(request(), [
