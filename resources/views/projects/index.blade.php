@@ -14,7 +14,7 @@
             <li><a href="{{ $project->path() }}">{{ $project->title }}</a></li>
         @empty
             <li>No projects yet.</li>
-        @endforeach
+        @endforelse
     </ul>
 </body>
 </html>
